@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         args: ['--no-sandbox', '--disable-setuid-sandbox'] 
       });
       const page = await browser.newPage();
-      await page.setContent(html, { waitUntil: "networkidle0" });
+      await page.setContent(html, { waitUntil: "load" });
       const pdfBuffer = await page.pdf({ 
         format: "A4", 
         margin: { top: "20px", right: "20px", bottom: "20px", left: "20px" },
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       });
       await browser.close();
 
-      return new NextResponse(pdfBuffer, {
+      return new NextResponse(pdfBuffer as any, {
         headers: {
           "Content-Type": "application/pdf",
           "Content-Disposition": `attachment; filename="resume-${templateStyle}.pdf"`
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
       });
 
       const buffer = await Packer.toBuffer(doc);
-      return new NextResponse(buffer, {
+      return new NextResponse(buffer as any, {
         headers: {
           "Content-Type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           "Content-Disposition": `attachment; filename="resume-${templateStyle}.docx"`

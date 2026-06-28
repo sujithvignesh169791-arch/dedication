@@ -173,7 +173,7 @@ function InterviewFlow() {
             </div>
             <div className="space-y-2">
               <Label>Select Resume</Label>
-              <Select value={selectedResume} onValueChange={setSelectedResume}>
+              <Select value={selectedResume} onValueChange={val => val && setSelectedResume(val)}>
                 <SelectTrigger><SelectValue placeholder="Select a resume" /></SelectTrigger>
                 <SelectContent>
                   {resumes.map(r => (
@@ -184,7 +184,7 @@ function InterviewFlow() {
             </div>
             <div className="space-y-2">
               <Label>Difficulty</Label>
-              <Select value={difficulty} onValueChange={setDifficulty}>
+              <Select value={difficulty} onValueChange={val => val && setDifficulty(val)}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="easy">Easy (Intern / Entry Level)</SelectItem>

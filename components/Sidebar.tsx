@@ -22,7 +22,7 @@ export function Sidebar() {
   return (
     <aside className={`hidden md:flex flex-col border-r bg-muted/10 transition-all duration-300 relative ${collapsed ? 'w-20' : 'w-64'}`}>
       <div className="flex flex-col flex-1 py-6 px-3 gap-2">
-        <TooltipProvider delayDuration={0}>
+        <TooltipProvider>
           {links.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/dashboard' && pathname.startsWith(link.href));
             

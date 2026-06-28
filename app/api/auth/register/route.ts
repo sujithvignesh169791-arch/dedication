@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, userId: user._id }, { status: 201 });
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: (error as any).errors || error.issues }, { status: 400 });
     }
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

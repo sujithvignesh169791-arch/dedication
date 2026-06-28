@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         const plan = session.metadata?.plan || 'monthly';
         
         if (userId) {
-          const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
+          const subscription = (await stripe.subscriptions.retrieve(session.subscription as string)) as any;
           
           await PremiumSubscription.findOneAndUpdate(
             { userId },

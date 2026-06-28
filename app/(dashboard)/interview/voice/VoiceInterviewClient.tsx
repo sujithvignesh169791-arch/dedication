@@ -62,7 +62,7 @@ export default function VoiceInterviewClient() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
     if (!SpeechRecognition || !window.speechSynthesis || !navigator.mediaDevices?.getUserMedia) {
       setBrowserSupported(false)
       return
@@ -319,7 +319,7 @@ export default function VoiceInterviewClient() {
             </div>
             <div className="space-y-2">
               <Label>Select Resume</Label>
-              <Select value={selectedResume} onValueChange={setSelectedResume}>
+              <Select value={selectedResume} onValueChange={val => val && setSelectedResume(val)}>
                 <SelectTrigger><SelectValue placeholder="Select a resume" /></SelectTrigger>
                 <SelectContent>
                   {resumes.map(r => (
@@ -331,7 +331,7 @@ export default function VoiceInterviewClient() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Difficulty</Label>
-                <Select value={difficulty} onValueChange={setDifficulty}>
+                <Select value={difficulty} onValueChange={val => val && setDifficulty(val)}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="easy">Easy</SelectItem>
@@ -349,7 +349,7 @@ export default function VoiceInterviewClient() {
               <h3 className="font-medium flex items-center gap-2"><Settings className="h-4 w-4" /> Voice Settings</h3>
               <div className="space-y-2">
                 <Label>Interviewer Voice</Label>
-                <Select value={selectedVoice} onValueChange={setSelectedVoice}>
+                <Select value={selectedVoice} onValueChange={val => val && setSelectedVoice(val)}>
                   <SelectTrigger><SelectValue placeholder="Select Voice" /></SelectTrigger>
                   <SelectContent>
                     {voices.filter(v => v.lang.startsWith('en')).map(v => (
