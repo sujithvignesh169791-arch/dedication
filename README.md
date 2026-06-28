@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Resume Pro Coach
 
-## Getting Started
+A production-ready Next.js 14 application for AI-powered resume analysis, mock interviews, and automated resume rebuilding.
 
-First, run the development server:
+## Tech Stack
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Database**: MongoDB with Mongoose
+- **Authentication**: NextAuth.js v5
+- **AI Integration**: Google Gemini via AI Studio, Groq, or OpenAI (fully flexible via OpenAI compatibility SDK using structured JSON outputs)
+- **Payments**: Stripe Subscriptions
+- **File Processing**: pdf-parse, mammoth, Puppeteer (for PDF export)
+- **Visualizations**: Recharts
+- **Validation**: Zod
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prerequisites
+- Node.js 20+
+- MongoDB instance (e.g., MongoDB Atlas)
+- AI API Key (Google Gemini, Groq, or OpenAI)
+- Stripe Account (with Secret and Publishable keys)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
+   ```bash
+   git clone <repo-url>
+   cd ai-resume-pro-coach
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Configure Environment Variables**
+   Copy `.env.example` to `.env.local` and fill in your keys:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stripe Webhook Setup
+To handle subscription events locally:
+1. Install the Stripe CLI.
+2. Run `stripe listen --forward-to localhost:3000/api/premium/webhook`
+3. Copy the webhook signing secret (`whsec_...`) into your `.env.local` as `STRIPE_WEBHOOK_SECRET`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment Guide (Vercel)
+1. Push your code to GitHub.
+2. Import the project into Vercel.
+3. Configure all environment variables in the Vercel dashboard.
+4. **Important**: Puppeteer does not run on Vercel's free tier due to function size limits. You must either configure a custom Docker deployment (a `Dockerfile` is provided) or replace Puppeteer with a service like Browserless.io.
+5. Set `NEXTAUTH_URL` to your production domain.
+6. Deploy!
 
-## Deploy on Vercel
+## API Routes Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/api/auth/register` | POST | Register a new user |
+| `/api/resume/upload` | POST | Upload and extract text from a resume (PDF/DOCX) |
+| `/api/resume/analyze` | POST | Generate AI analysis and ATS scoring |
+| `/api/resume/rebuild` | POST | AI rewrites resume bullets and summary |
+| `/api/resume/export` | POST | Generate PDF from JSON resume via Puppeteer |
+| `/api/interview/generate` | POST | Create AI mock interview questions |
+| `/api/interview/score` | POST | Score a specific interview answer |
+| `/api/premium/checkout` | POST | Create Stripe subscription checkout session |
+| `/api/premium/webhook` | POST | Handle Stripe async webhook events |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `MONGODB_URI` | Connection string for MongoDB |
+| `NEXTAUTH_SECRET` | Random 32-byte string for NextAuth session encryption |
+| `NEXTAUTH_URL` | Base URL of the application |
+| `GEMINI_API_KEY` | Optional: Key for Google AI Studio (Gemini 1.5 Flash) |
+| `GROQ_API_KEY` | Optional: Key for Groq (Llama 3 70B) |
+| `OPENAI_API_KEY` | Optional: Secret key from OpenAI platform |
+| `STRIPE_SECRET_KEY` | Secret key for Stripe API |
+| `STRIPE_PUBLISHABLE_KEY` | Public key for Stripe Elements |
+| `STRIPE_WEBHOOK_SECRET` | Secret for verifying Stripe webhook signatures |
+| `STRIPE_MONTHLY_PRICE_ID` | Stripe Product Price ID for monthly plan |
+| `STRIPE_ANNUAL_PRICE_ID` | Stripe Product Price ID for annual plan |
+| `NEXT_PUBLIC_APP_URL` | Public-facing app URL |
