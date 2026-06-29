@@ -37,7 +37,7 @@ const openai = new OpenAI({
 
 // Use gemini-1.5-flash by default for Gemini, or llama-3.3-70b-versatile for Groq
 export const AI_MODEL = process.env.GEMINI_API_KEY 
-  ? "gemini-1.5-flash" 
+  ? "gemini-2.5-flash" 
   : process.env.GROQ_API_KEY 
     ? "llama-3.3-70b-versatile" 
     : "gpt-4o";
