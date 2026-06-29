@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, CheckCircle2, FileText, Mic, Star } from "lucide-react";
 import { useState } from "react";
 import { VideoBackground } from "@/components/VideoBackground";
 
@@ -132,6 +132,74 @@ export default function CodeNestLanding() {
           </button>
         </Link>
       </main>
+
+      {/* Features Section */}
+      <section className="relative z-10 bg-black/40 backdrop-blur-md py-24 border-y border-white/10 mt-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">Everything you need to get hired</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center">
+              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
+                <FileText className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white">ATS Resume Analysis</h3>
+              <p className="text-white/70">
+                Get instant feedback on your resume. We identify missing keywords, formatting issues, and calculate your ATS match score.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center">
+              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
+                <Mic className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white">AI Mock Interviews</h3>
+              <p className="text-white/70">
+                Practice with our voice-enabled AI interviewer. Get real-time feedback on your answers, tone, and confidence.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 uppercase rounded-bl-lg tracking-wider">
+                Pro
+              </div>
+              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
+                <Star className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-white">Auto-Rebuilder</h3>
+              <p className="text-white/70">
+                Let AI automatically rewrite your bullet points and summary to perfectly match the job description and beat the ATS.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof / Trust */}
+      <section className="relative z-10 container mx-auto px-4 py-24 text-center max-w-4xl">
+        <h2 className="text-3xl font-bold mb-8 text-white">Stop guessing what recruiters want.</h2>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-left">
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
+            <span className="text-lg font-medium text-white/90">Bypass ATS filters</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
+            <span className="text-lg font-medium text-white/90">Nail technical questions</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
+            <span className="text-lg font-medium text-white/90">Negotiate higher salaries</span>
+          </div>
+        </div>
+      </section>
+
+      <footer className="relative z-10 bg-black/40 backdrop-blur-xl border-t border-white/10 py-12 text-center text-white/50">
+        <p>© {new Date().getFullYear()} AI Resume Pro Coach. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
