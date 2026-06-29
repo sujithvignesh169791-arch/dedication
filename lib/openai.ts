@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 
 // We are using Google Gemini via AI Studio by default using the OpenAI compatibility layer,
 // but falling back to Groq or OpenAI if their keys are provided.
-const apiKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY;
+const apiKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY || "dummy-key-to-prevent-build-crash";
 const baseURL = process.env.GEMINI_API_KEY 
   ? "https://generativelanguage.googleapis.com/v1beta/openai/" 
   : process.env.GROQ_API_KEY 
