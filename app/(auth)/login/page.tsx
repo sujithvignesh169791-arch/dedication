@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { VantaBackground } from "@/components/VantaBackground"
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -61,7 +62,7 @@ function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-[400px]">
+    <Card className="w-full max-w-[400px] relative z-10 bg-background/80 backdrop-blur-xl border-border/50 shadow-2xl">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-bold">AI Resume Pro Coach</CardTitle>
         <CardDescription>Enter your email and password to sign in</CardDescription>
@@ -111,7 +112,8 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center p-4 bg-slate-50">
+    <div className="flex min-h-screen items-center justify-center p-4 relative overflow-hidden">
+      <VantaBackground />
       <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
         <LoginForm />
       </Suspense>

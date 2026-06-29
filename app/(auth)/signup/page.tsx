@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { VantaBackground } from "@/components/VantaBackground"
 
 const signupSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -87,8 +88,9 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4 bg-slate-50">
-      <Card className="w-full max-w-[400px]">
+    <div className="flex min-h-screen items-center justify-center p-4 relative overflow-hidden">
+      <VantaBackground />
+      <Card className="w-full max-w-[400px] relative z-10 bg-background/80 backdrop-blur-xl border-border/50 shadow-2xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Create an Account</CardTitle>
           <CardDescription>Enter your details to get started</CardDescription>

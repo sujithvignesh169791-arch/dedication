@@ -2,13 +2,15 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Navbar } from "@/components/Navbar"
 import { ArrowRight, CheckCircle2, FileText, Mic, Star } from "lucide-react"
+import { VantaBackground } from "@/components/VantaBackground"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
+      <VantaBackground />
       <Navbar />
       
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {/* Hero Section */}
         <section className="container mx-auto px-4 pt-24 pb-32 text-center max-w-5xl">
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -32,13 +34,13 @@ export default function LandingPage() {
         </section>
 
         {/* Features Section */}
-        <section className="bg-muted/30 py-24">
+        <section className="relative z-10 bg-background/60 backdrop-blur-xl py-24 border-y border-border/50">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Everything you need to get hired</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-background p-8 rounded-2xl border shadow-sm flex flex-col items-center text-center">
+              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
                 <div className="h-16 w-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                   <FileText className="h-8 w-8" />
                 </div>
@@ -49,7 +51,7 @@ export default function LandingPage() {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-background p-8 rounded-2xl border shadow-sm flex flex-col items-center text-center">
+              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
                 <div className="h-16 w-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                   <Mic className="h-8 w-8" />
                 </div>
@@ -60,7 +62,7 @@ export default function LandingPage() {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-background p-8 rounded-2xl border shadow-sm flex flex-col items-center text-center relative overflow-hidden">
+              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 uppercase rounded-bl-lg tracking-wider">
                   Pro
                 </div>
@@ -77,7 +79,7 @@ export default function LandingPage() {
         </section>
 
         {/* Social Proof / Trust */}
-        <section className="container mx-auto px-4 py-24 text-center max-w-4xl">
+        <section className="relative z-10 container mx-auto px-4 py-24 text-center max-w-4xl">
           <h2 className="text-3xl font-bold mb-8">Stop guessing what recruiters want.</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-left">
             <div className="flex items-center gap-3">
@@ -96,7 +98,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="bg-background border-t py-12 text-center text-muted-foreground">
+      <footer className="relative z-10 bg-background/60 backdrop-blur-xl border-t border-border/50 py-12 text-center text-muted-foreground">
         <p>© {new Date().getFullYear()} AI Resume Pro Coach. All rights reserved.</p>
       </footer>
     </div>
