@@ -1,6 +1,6 @@
 "use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { VideoBackground } from "@/components/VideoBackground";
@@ -93,12 +93,14 @@ export default function CodeNestLanding() {
                  maskComposite: "exclude"
                }} 
           />
-          <div className="relative z-10 flex flex-col items-center text-center gap-2">
-            <span className="text-[14px] font-['var(--font-inter)'] text-white/70">[ 2025 ]</span>
-            <h3 className="text-[18px] font-['var(--font-inter)'] leading-tight text-white/90">
-              Taught by <span className="font-['var(--font-instrument-serif)'] italic text-[#5ed29c] text-[20px]">Industry</span> Professionals
-            </h3>
-            <p className="text-[11px] font-['var(--font-inter)'] text-white/50 mt-1">Elevate your skillset.</p>
+          <div className="relative z-10 w-full h-full p-1 flex items-center justify-center">
+            <Image 
+              src="/images/advanced_3d_ai.png" 
+              alt="Advanced 3D AI Core" 
+              width={180} 
+              height={180} 
+              className="object-cover rounded-xl w-full h-full opacity-90" 
+            />
           </div>
         </div>
 
