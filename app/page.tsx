@@ -1,106 +1,130 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Navbar } from "@/components/Navbar"
-import { ArrowRight, CheckCircle2, FileText, Mic, Star } from "lucide-react"
-import { VantaBackground } from "@/components/VantaBackground"
+"use client";
 
-export default function LandingPage() {
+import Link from "next/link";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { VideoBackground } from "@/components/VideoBackground";
+
+export default function CodeNestLanding() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
-      <VantaBackground />
-      <Navbar />
-      
-      <main className="flex-1 relative z-10">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 pt-24 pb-32 text-center max-w-5xl">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Land Your Dream Job with AI
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-            AI Resume Pro Coach analyzes your resume, scores it against ATS algorithms, and trains you with dynamic, role-specific mock interviews.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/signup">
-              <Button size="lg" className="w-full sm:w-auto text-lg h-14 px-8 rounded-full">
-                Start for Free <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-[#070b0a] text-white selection:bg-[#5ed29c]/30">
+      <VideoBackground />
+
+      {/* Global Navigation */}
+      <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 md:px-12">
+        <div className="flex items-center gap-3">
+          {/* Minimalist Logo */}
+          <div className="w-8 h-8 rounded bg-white flex items-center justify-center">
+            <div className="w-4 h-4 bg-[#070b0a] rounded-sm" />
+          </div>
+          <span className="font-['var(--font-inter)'] font-bold tracking-tight text-xl">CodeNest</span>
+        </div>
+
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center gap-8 font-['var(--font-inter)'] text-[16px] font-medium">
+          {["PROJECTS", "BLOG", "ABOUT", "RESUME"].map((item) => (
+            <Link key={item} href="#" className="hover:text-[#5ed29c] transition-colors">
+              {item}
             </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg h-14 px-8 rounded-full">
-                Already have an account?
-              </Button>
-            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden z-50 relative"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+        </button>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#070b0a] flex flex-col items-center justify-center">
+          <nav className="flex flex-col items-center gap-8 font-['var(--font-inter)'] text-2xl font-medium">
+            {["PROJECTS", "BLOG", "ABOUT", "RESUME"].map((item) => (
+              <Link
+                key={item}
+                href="#"
+                className="hover:text-[#5ed29c] transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* Main Hero Content */}
+      <main className="flex-1 relative z-10 flex flex-col items-center justify-center px-6 text-center mt-20">
+        
+        {/* Central Glow (SVG Ellipse) */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] pointer-events-none">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto opacity-40">
+            <defs>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="25" result="blur" />
+              </filter>
+            </defs>
+            <ellipse cx="50" cy="50" rx="40" ry="20" fill="#0b3b2c" filter="url(#glow)" />
+            <ellipse cx="50" cy="50" rx="30" ry="10" fill="#138565" filter="url(#glow)" />
+          </svg>
+        </div>
+
+        {/* The Liquid Glass Card */}
+        <div className="relative w-[200px] h-[200px] rounded-2xl flex flex-col items-center justify-center p-4 -translate-y-[50px] mb-8"
+             style={{
+               background: "rgba(255, 255, 255, 0.01)",
+               backgroundBlendMode: "luminosity",
+               backdropFilter: "blur(4px)",
+               WebkitBackdropFilter: "blur(4px)",
+               boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.1)"
+             }}>
+          {/* Border Effect via ::before pseudo-element inline technique */}
+          <div className="absolute inset-0 rounded-2xl pointer-events-none"
+               style={{
+                 padding: "1.4px",
+                 background: "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%)",
+                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                 WebkitMaskComposite: "xor",
+                 maskComposite: "exclude"
+               }} 
+          />
+          <div className="relative z-10 flex flex-col items-center text-center gap-2">
+            <span className="text-[14px] font-['var(--font-inter)'] text-white/70">[ 2025 ]</span>
+            <h3 className="text-[18px] font-['var(--font-inter)'] leading-tight text-white/90">
+              Taught by <span className="font-['var(--font-instrument-serif)'] italic text-[#5ed29c] text-[20px]">Industry</span> Professionals
+            </h3>
+            <p className="text-[11px] font-['var(--font-inter)'] text-white/50 mt-1">Elevate your skillset.</p>
           </div>
-        </section>
+        </div>
 
-        {/* Features Section */}
-        <section className="relative z-10 bg-background/60 backdrop-blur-xl py-24 border-y border-border/50">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Everything you need to get hired</h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Feature 1 */}
-              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-                <div className="h-16 w-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-                  <FileText className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">ATS Resume Analysis</h3>
-                <p className="text-muted-foreground">
-                  Get instant feedback on your resume. We identify missing keywords, formatting issues, and calculate your ATS match score.
-                </p>
-              </div>
+        {/* Eyebrow */}
+        <div className="font-['var(--font-plus-jakarta-sans)'] font-bold text-[11px] uppercase tracking-widest text-[#5ed29c] mb-6">
+          Career-Ready Curriculum
+        </div>
 
-              {/* Feature 2 */}
-              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-                <div className="h-16 w-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-                  <Mic className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">AI Mock Interviews</h3>
-                <p className="text-muted-foreground">
-                  Practice with our voice-enabled AI interviewer. Get real-time feedback on your answers, tone, and confidence.
-                </p>
-              </div>
+        {/* Main Headline */}
+        <h1 className="font-['var(--font-inter)'] font-extrabold uppercase tracking-tight text-[40px] md:text-[72px] leading-[1.1] mb-6 max-w-4xl text-white">
+          LAUNCH YOUR <br className="md:hidden" /> CODING CAREER<span className="text-[#5ed29c]">.</span>
+        </h1>
 
-              {/* Feature 3 */}
-              <div className="bg-background/80 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 uppercase rounded-bl-lg tracking-wider">
-                  Pro
-                </div>
-                <div className="h-16 w-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-                  <Star className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Auto-Rebuilder</h3>
-                <p className="text-muted-foreground">
-                  Let AI automatically rewrite your bullet points and summary to perfectly match the job description and beat the ATS.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Description */}
+        <p className="font-['var(--font-inter)'] text-[14px] text-white/70 max-w-[512px] leading-relaxed mb-10">
+          Master in-demand coding skills through immersive projects and personalized mentorship from world-class engineers.
+        </p>
 
-        {/* Social Proof / Trust */}
-        <section className="relative z-10 container mx-auto px-4 py-24 text-center max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8">Stop guessing what recruiters want.</h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-left">
-            <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-green-500 h-6 w-6" />
-              <span className="text-lg font-medium">Bypass ATS filters</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-green-500 h-6 w-6" />
-              <span className="text-lg font-medium">Nail technical questions</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <CheckCircle2 className="text-green-500 h-6 w-6" />
-              <span className="text-lg font-medium">Negotiate higher salaries</span>
-            </div>
-          </div>
-        </section>
+        {/* Primary CTA */}
+        <Link href="/signup">
+          <button className="flex items-center gap-2 bg-[#5ed29c] text-[#070b0a] font-['var(--font-inter)'] font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-full hover:bg-[#4bc089] transition-all hover:scale-105 active:scale-95">
+            Get Started
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </Link>
       </main>
-
-      <footer className="relative z-10 bg-background/60 backdrop-blur-xl border-t border-border/50 py-12 text-center text-muted-foreground">
-        <p>© {new Date().getFullYear()} AI Resume Pro Coach. All rights reserved.</p>
-      </footer>
     </div>
-  )
+  );
 }
