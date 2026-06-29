@@ -1,204 +1,155 @@
-"use client";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Menu, X, CheckCircle2, FileText, Mic, Star } from "lucide-react";
-import { useState } from "react";
-import { VideoBackground } from "@/components/VideoBackground";
+import { ArrowRight, Shield, Lock, Activity } from "lucide-react";
 
-export default function CodeNestLanding() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+export default function NexusLanding() {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-[#070b0a] text-white selection:bg-[#5ed29c]/30">
-      <VideoBackground />
-
-      {/* Global Navigation */}
-      <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 md:px-12">
-        <div className="flex items-center gap-3">
-          {/* Minimalist Logo */}
-          <div className="w-8 h-8 rounded bg-white flex items-center justify-center">
-            <div className="w-4 h-4 bg-[#070b0a] rounded-sm" />
+    <div className="min-h-screen bg-[#000000] text-white selection:bg-white/20 font-sans">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-black/50 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold tracking-tighter text-xl">NEXUS<span className="text-white/40 font-normal text-sm ml-1">v2.4</span></span>
           </div>
-          <span className="font-['var(--font-inter)'] font-bold tracking-tight text-xl">MOCK INTERVIEW-AI POWERED</span>
-        </div>
-
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-8 font-['var(--font-inter)'] text-[16px] font-medium">
-          {["PROJECTS", "BLOG", "ABOUT", "RESUME"].map((item) => (
-            <Link key={item} href="#" className="hover:text-[#5ed29c] transition-colors">
-              {item}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
+            <a href="#features" className="hover:text-white transition-colors">Features</a>
+            <a href="#how" className="hover:text-white transition-colors">How it works</a>
+            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          </div>
+          <div>
+            <Link href="/login" className="text-sm font-medium hover:text-white text-white/70 mr-6 transition-colors hidden md:inline-block">Log in</Link>
+            <Link href="/signup" className="text-sm font-medium bg-white text-black px-4 py-2 rounded hover:bg-white/90 transition-colors">
+              Launch App
             </Link>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden z-50 relative"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
-        </button>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#070b0a] flex flex-col items-center justify-center">
-          <nav className="flex flex-col items-center gap-8 font-['var(--font-inter)'] text-2xl font-medium">
-            {["PROJECTS", "BLOG", "ABOUT", "RESUME"].map((item) => (
-              <Link
-                key={item}
-                href="#"
-                className="hover:text-[#5ed29c] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
-
-      {/* Main Hero Content */}
-      <main className="flex-1 relative z-10 flex flex-col items-center justify-center px-6 text-center mt-20">
-        
-        {/* Central Glow (SVG Ellipse) */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] pointer-events-none">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto opacity-40">
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="25" result="blur" />
-              </filter>
-            </defs>
-            <ellipse cx="50" cy="50" rx="40" ry="20" fill="#0b3b2c" filter="url(#glow)" />
-            <ellipse cx="50" cy="50" rx="30" ry="10" fill="#138565" filter="url(#glow)" />
-          </svg>
-        </div>
-
-        {/* The Liquid Glass Card */}
-        <div className="relative w-[200px] h-[200px] rounded-2xl flex flex-col items-center justify-center p-4 -translate-y-[50px] mb-8"
-             style={{
-               background: "rgba(255, 255, 255, 0.01)",
-               backgroundBlendMode: "luminosity",
-               backdropFilter: "blur(4px)",
-               WebkitBackdropFilter: "blur(4px)",
-               boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.1)"
-             }}>
-          {/* Border Effect via ::before pseudo-element inline technique */}
-          <div className="absolute inset-0 rounded-2xl pointer-events-none"
-               style={{
-                 padding: "1.4px",
-                 background: "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%)",
-                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                 WebkitMaskComposite: "xor",
-                 maskComposite: "exclude"
-               }} 
-          />
-          <div className="relative z-10 w-full h-full p-1 flex items-center justify-center">
-            <Image 
-              src="/images/advanced_3d_ai.png" 
-              alt="Advanced 3D AI Core" 
-              width={180} 
-              height={180} 
-              className="object-cover rounded-xl w-full h-full opacity-90" 
-            />
           </div>
         </div>
+      </nav>
 
-        {/* Eyebrow */}
-        <div className="font-['var(--font-plus-jakarta-sans)'] font-bold text-[11px] uppercase tracking-widest text-[#5ed29c] mb-6">
-          Career-Ready Curriculum
+      {/* Hero Section */}
+      <section className="pt-40 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/70 mb-8">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          System Operational
+        </div>
+        
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter max-w-4xl leading-[1.1] mb-6">
+          Get hired by the algorithm,<br className="hidden md:block"/> hired by the human.
+        </h1>
+        
+        <p className="text-lg text-white/60 max-w-2xl mb-10 leading-relaxed">
+          Nexus is a diagnostic AI for your career. Score your resume against any ATS, rehearse interviews with an adaptive voice agent, and rebuild your story for the role you want — in seconds.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <Link href="/signup" className="w-full sm:w-auto bg-white text-black font-semibold px-8 py-4 rounded hover:bg-white/90 transition-all flex items-center justify-center gap-2 group">
+            Analyze my resume
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link href="/signup" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white font-medium px-8 py-4 rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+            Try a mock interview
+          </Link>
         </div>
 
-        {/* Main Headline with 3D Effect */}
-        <h1 
-          className="font-['var(--font-inter)'] font-extrabold uppercase tracking-tight text-[36px] md:text-[60px] leading-[1.1] mb-6 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-[#a9e5ca]"
-          style={{
-            textShadow: "0px 1px 0px #2b6a4b, 0px 2px 0px #24573e, 0px 3px 0px #1d4531, 0px 4px 0px #153224, 0px 10px 20px rgba(0,0,0,0.9), 0px 0px 15px rgba(94, 210, 156, 0.3)"
-          }}
-        >
-          ANALYSIS AND IMPROVE YOUR <br className="hidden md:block" /> RESUME AND SKILLS
-        </h1>
-
-        {/* Description */}
-        <p className="font-['var(--font-inter)'] text-[16px] text-white/70 max-w-[600px] leading-relaxed mb-10">
-          Upload your resume for instant AI-powered feedback, actionable improvements, and practice with realistic mock interviews to land your dream job.
-        </p>
-
-        {/* Primary CTA */}
-        <Link href="/signup">
-          <button className="flex items-center gap-2 bg-[#5ed29c] text-[#070b0a] font-['var(--font-inter)'] font-bold uppercase tracking-wide text-sm px-8 py-4 rounded-full hover:bg-[#4bc089] transition-all hover:scale-105 active:scale-95">
-            Get Started
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </Link>
-      </main>
+        {/* Floating Quote */}
+        <div className="mt-20 p-6 border border-white/10 bg-white/5 rounded-xl backdrop-blur-sm max-w-md w-full relative text-left">
+          <div className="absolute -top-3 -left-3 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)]">
+            <span className="text-[10px] font-bold text-white">AI</span>
+          </div>
+          <p className="text-sm font-medium text-white/80 italic">
+            "Tell me about a time you led through ambiguity."
+          </p>
+        </div>
+      </section>
 
       {/* Features Section */}
-      <section className="relative z-10 bg-black/40 backdrop-blur-md py-24 border-y border-white/10 mt-20">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">Everything you need to get hired</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
+      <section id="features" className="py-24 border-t border-white/5 bg-gradient-to-b from-transparent to-white/[0.02]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">One engine. Three weapons against the void.</h2>
+            <p className="text-white/50">Built around the actual moments your application either wins or dies.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
             {/* Feature 1 */}
-            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center">
-              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
-                <FileText className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">ATS Resume Analysis</h3>
-              <p className="text-white/70">
-                Get instant feedback on your resume. We identify missing keywords, formatting issues, and calculate your ATS match score.
+            <Link href="/signup" className="group p-8 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col h-full cursor-pointer">
+              <div className="text-xs font-mono text-white/40 mb-8">/ 01</div>
+              <h3 className="text-xl font-bold mb-4">ATS Resume Analysis</h3>
+              <p className="text-sm text-white/60 leading-relaxed mb-8 flex-1">
+                Radiographic scan against the JD. Score, keyword gaps, formatting traps, line-by-line surgery.
               </p>
-            </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                Open module <ArrowRight className="w-3 h-3" />
+              </div>
+            </Link>
 
             {/* Feature 2 */}
-            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center">
-              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
-                <Mic className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">AI Mock Interviews</h3>
-              <p className="text-white/70">
-                Practice with our voice-enabled AI interviewer. Get real-time feedback on your answers, tone, and confidence.
+            <Link href="/signup" className="group p-8 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col h-full cursor-pointer">
+              <div className="text-xs font-mono text-white/40 mb-8">/ 02</div>
+              <h3 className="text-xl font-bold mb-4">AI Mock Interviews</h3>
+              <p className="text-sm text-white/60 leading-relaxed mb-8 flex-1">
+                Adaptive voice agent for behavioral & technical. STAR scoring, filler detection, real coaching.
               </p>
-            </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                Open module <ArrowRight className="w-3 h-3" />
+              </div>
+            </Link>
 
             {/* Feature 3 */}
-            <div className="bg-[#070b0a]/80 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-sm flex flex-col items-center text-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-3 py-1 uppercase rounded-bl-lg tracking-wider">
-                Pro
-              </div>
-              <div className="h-16 w-16 bg-[#5ed29c]/10 text-[#5ed29c] rounded-2xl flex items-center justify-center mb-6">
-                <Star className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Auto-Rebuilder</h3>
-              <p className="text-white/70">
-                Let AI automatically rewrite your bullet points and summary to perfectly match the job description and beat the ATS.
+            <Link href="/signup" className="group p-8 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col h-full cursor-pointer">
+              <div className="text-xs font-mono text-white/40 mb-8">/ 03</div>
+              <h3 className="text-xl font-bold mb-4">Auto-Rebuilder</h3>
+              <p className="text-sm text-white/60 leading-relaxed mb-8 flex-1">
+                One-click rewrite tuned to your target role. Diff-view, accept-per-line, export anywhere.
               </p>
+              <div className="flex items-center gap-2 text-xs font-medium text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                Open module <ArrowRight className="w-3 h-3" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how" className="py-24 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <div className="w-12 h-12 rounded border border-white/10 flex items-center justify-center mb-6 bg-white/5">
+                <span className="font-mono text-sm">01</span>
+              </div>
+              <h4 className="font-bold mb-2">Drop your resume</h4>
+              <p className="text-sm text-white/50">PDF, DOCX, or paste. We parse the structure your ATS sees.</p>
+            </div>
+            <div>
+              <div className="w-12 h-12 rounded border border-white/10 flex items-center justify-center mb-6 bg-white/5">
+                <span className="font-mono text-sm">02</span>
+              </div>
+              <h4 className="font-bold mb-2">We diagnose everything</h4>
+              <p className="text-sm text-white/50">Score, gaps, weak verbs, missing metrics — across 47 signals.</p>
+            </div>
+            <div>
+              <div className="w-12 h-12 rounded border border-white/10 flex items-center justify-center mb-6 bg-white/5 text-emerald-400 border-emerald-400/20 bg-emerald-400/5">
+                <span className="font-mono text-sm">03</span>
+              </div>
+              <h4 className="font-bold mb-2">Ship a stronger you</h4>
+              <p className="text-sm text-white/50">Auto-rebuild, drill the interview, export the winning version.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof / Trust */}
-      <section className="relative z-10 container mx-auto px-4 py-24 text-center max-w-4xl">
-        <h2 className="text-3xl font-bold mb-8 text-white">Stop guessing what recruiters want.</h2>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-left">
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
-            <span className="text-lg font-medium text-white/90">Bypass ATS filters</span>
+      {/* Footer */}
+      <footer className="border-t border-white/5 py-12">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-sm text-white/40">
+            © {new Date().getFullYear()} NEXUS Systems.
           </div>
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
-            <span className="text-lg font-medium text-white/90">Nail technical questions</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#5ed29c] h-6 w-6" />
-            <span className="text-lg font-medium text-white/90">Negotiate higher salaries</span>
+          <div className="flex items-center gap-6 text-sm text-white/40">
+            <a href="#" className="flex items-center gap-1 hover:text-white transition-colors"><Shield className="w-3 h-3"/> Security</a>
+            <a href="#" className="flex items-center gap-1 hover:text-white transition-colors"><Lock className="w-3 h-3"/> Privacy</a>
+            <a href="#" className="flex items-center gap-1 hover:text-white transition-colors"><Activity className="w-3 h-3"/> Status</a>
           </div>
         </div>
-      </section>
-
-      <footer className="relative z-10 bg-black/40 backdrop-blur-xl border-t border-white/10 py-12 text-center text-white/50">
-        <p>© {new Date().getFullYear()} AI Resume Pro Coach. All rights reserved.</p>
       </footer>
     </div>
   );
