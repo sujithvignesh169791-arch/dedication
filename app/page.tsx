@@ -109,14 +109,19 @@ export default function CodeNestLanding() {
           Career-Ready Curriculum
         </div>
 
-        {/* Main Headline */}
-        <h1 className="font-['var(--font-inter)'] font-extrabold uppercase tracking-tight text-[40px] md:text-[72px] leading-[1.1] mb-6 max-w-4xl text-white">
-          LAUNCH YOUR <br className="md:hidden" /> CODING CAREER<span className="text-[#5ed29c]">.</span>
+        {/* Main Headline with 3D Effect */}
+        <h1 
+          className="font-['var(--font-inter)'] font-extrabold uppercase tracking-tight text-[36px] md:text-[60px] leading-[1.1] mb-6 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-[#a9e5ca]"
+          style={{
+            textShadow: "0px 1px 0px #2b6a4b, 0px 2px 0px #24573e, 0px 3px 0px #1d4531, 0px 4px 0px #153224, 0px 10px 20px rgba(0,0,0,0.9), 0px 0px 15px rgba(94, 210, 156, 0.3)"
+          }}
+        >
+          ANALYSIS AND IMPROVE YOUR <br className="hidden md:block" /> RESUME AND SKILLS
         </h1>
 
         {/* Description */}
-        <p className="font-['var(--font-inter)'] text-[14px] text-white/70 max-w-[512px] leading-relaxed mb-10">
-          Master in-demand coding skills through immersive projects and personalized mentorship from world-class engineers.
+        <p className="font-['var(--font-inter)'] text-[16px] text-white/70 max-w-[600px] leading-relaxed mb-10">
+          Upload your resume for instant AI-powered feedback, actionable improvements, and practice with realistic mock interviews to land your dream job.
         </p>
 
         {/* Primary CTA */}
