@@ -19,7 +19,7 @@ export default function CodeNestLanding() {
           <div className="w-8 h-8 rounded bg-white flex items-center justify-center">
             <div className="w-4 h-4 bg-[#070b0a] rounded-sm" />
           </div>
-          <span className="font-['var(--font-inter)'] font-bold tracking-tight text-xl">CodeNest</span>
+          <span className="font-['var(--font-inter)'] font-bold tracking-tight text-xl">MOCK INTERVIEW-AI POWERED</span>
         </div>
 
         {/* Desktop Menu */}
