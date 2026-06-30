@@ -13,14 +13,22 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 async function getAnalysisData(id: string) {
+  console.log("🔍 [AnalysisPage] Fetching data for id:", id);
   await connectDB()
-  let analysis = await ResumeAnalysis.findById(id).lean().catch(() => null)
+  let analysis = await ResumeAnalysis.findById(id).lean().catch((e) => {
+    console.error("❌ findById error:", e);
+    return null;
+  })
   
   if (!analysis) {
-    // Fallback: the id might be a resumeId (Dashboard passes resumeId)
-    analysis = await ResumeAnalysis.findOne({ resumeId: id }).sort({ createdAt: -1 }).lean().catch(() => null)
+    console.log("⚠️ Not found by ID, trying by resumeId");
+    analysis = await ResumeAnalysis.findOne({ resumeId: id }).sort({ createdAt: -1 }).lean().catch((e) => {
+      console.error("❌ findOne error:", e);
+      return null;
+    })
   }
 
+  console.log("🔍 [AnalysisPage] Analysis found:", !!analysis);
   if (!analysis) return null
   
   const resume = await Resume.findById(analysis.resumeId).lean()
